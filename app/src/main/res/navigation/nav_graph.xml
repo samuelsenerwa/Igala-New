@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_generalNews">
+    <fragment
+        android:id="@+id/navigation_generalNews"
+        android:name="com.example.igalanews.UI.GeneralNewsFragment"
+        android:label="General News"
+        tools:layout="@layout/fragment_general_news" />
+    <fragment
+        android:id="@+id/navigation_upcomingEvents"
+        android:name="com.example.igalanews.UI.UpcomingEventsFragment"
+        android:label="Upcoming Events"
+        tools:layout="@layout/fragment_upcoming_events" />
+
+    <fragment
+        android:id="@+id/navigation_videos"
+        android:name="com.example.igalanews.UI.VideosFragment"
+        android:label="Videos"
+        tools:layout="@layout/fragment_videos" />
+
+    <fragment
+        android:id="@+id/navigation_culturalMusic"
+        android:name="com.example.igalanews.UI.CulturalMusicFragment"
+        android:label="Cultural Music"
+        tools:layout="@layout/fragment_cultural_music" />
+    <fragment
+        android:id="@+id/navigation_culturalEvents"
+        android:name="com.example.igalanews.UI.CulturalEventsFragment"
+        android:label="Cultural Events"
+        tools:layout="@layout/fragment_cultural_events" />
+
+
+</navigation>

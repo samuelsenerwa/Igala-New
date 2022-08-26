@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_generalNews"
+        android:icon="@drawable/ic_news"
+        android:title="News" />
+    <item
+        android:id="@+id/navigation_upcomingEvents"
+        android:icon="@drawable/ic_upcoming_event"
+        android:title=" Events" />
+    <item
+        android:id="@+id/navigation_culturalMusic"
+        android:icon="@drawable/ic_cultural_music"
+        android:title=" Music" />
+    <item
+        android:id="@+id/navigation_videos"
+        android:icon="@drawable/ic_videos"
+        android:title="Videos" />
+    <item
+        android:id="@+id/navigation_culturalEvents"
+        android:icon="@drawable/ic_cultural_event"
+        android:title="Culture" />
+</menu>
