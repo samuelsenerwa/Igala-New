@@ -28,9 +28,9 @@
         tools:layout="@layout/fragment_cultural_music" />
     <fragment
         android:id="@+id/navigation_culturalEvents"
-        android:name="com.example.igalanews.UI.CulturalEventsFragment"
+        android:name="com.example.igalanews.UI.ProfileFragment"
         android:label="Cultural Events"
-        tools:layout="@layout/fragment_cultural_events" />
+        tools:layout="@layout/fragment_profile" />
 
 
 </navigation>

@@ -51,7 +51,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.mAuthor.setText(modelClassArrayList.get(holder.getPosition()).getAuthor());
         holder.mHeading.setText(modelClassArrayList.get(holder.getPosition()).getTitle());
         holder.mContent.setText(modelClassArrayList.get(holder.getPosition()).getDescription());
-        Glide.with(context).load(modelClassArrayList.get(holder.getPosition()).getUrlToImage()).into(holder.imageView);
+       // Glide.with(context).load(modelClassArrayList.get(holder.getPosition()).getUrlToImage()).into(holder.imageView);
+        Glide.with(holder.imageView.getContext())
+                .load(modelClassArrayList.get(holder.getPosition()).getUrlToImage())
+                .placeholder(R.drawable.imgthumb)
+                .error(R.drawable.imgthumb)
+                .into(holder.imageView);
     }
 
     @Override

@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">IgalaNews</string>
     <string name="api_key">5f2d4a58af5fae4943156bf8cdd4afe6</string>
+
+    <string name="facebook_app_id">1433562697126582</string>
+    <string name="fb_login_protocol_scheme">fb1433562697126582</string>
+    <string name="facebook_client_token">56789</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:id="@+id/imageview"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background"/>
+                    android:src="@drawable/imgthumb"/>
 
             </LinearLayout>
             <TextView

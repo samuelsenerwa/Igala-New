@@ -1,22 +1,15 @@
 package com.example.igalanews.UI;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,7 +20,6 @@ import com.example.igalanews.Models.ModelClass;
 import com.example.igalanews.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +33,8 @@ public class GeneralNewsFragment extends Fragment  {
     Adapter adapter;
     String country = "ng";
     private RecyclerView recyclerView_main;
-    SearchView searchView;
+   // SearchView searchView;
+    Toolbar mToolbar;
 
 
 
@@ -61,12 +54,19 @@ public class GeneralNewsFragment extends Fragment  {
         recyclerView_main.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new Adapter(getContext(), modelClassArrayList);
         recyclerView_main.setAdapter(adapter);
-        searchView = view.findViewById(R.id.search_view);
+        //searchView = view.findViewById(R.id.search_view);
 
 //        handleUserSearch();
         findNews();
 
+        mToolbar = view.findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
         return  view;
+    }
+
+    private Toolbar setSupportActionBar(Toolbar mToolbar) {
+         return mToolbar;
     }
 
 
