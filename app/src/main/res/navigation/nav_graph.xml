@@ -27,10 +27,10 @@
         android:label="Cultural Music"
         tools:layout="@layout/fragment_cultural_music" />
     <fragment
-        android:id="@+id/navigation_culturalEvents"
-        android:name="com.example.igalanews.UI.ProfileFragment"
+        android:id="@+id/navigation_faceOfTheWeek"
+        android:name="com.example.igalanews.UI.FaceOfTheWeekFragment"
         android:label="Cultural Events"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_face_of_the_week" />
 
 
 </navigation>

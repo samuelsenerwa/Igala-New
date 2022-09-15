@@ -55,7 +55,7 @@ public class VideosFragment extends Fragment {
         youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
             @Override
             public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                String videoId = "suAJgL6-0mI";
+                String videoId = "r-jQPznvkrY";
                 youTubePlayer.loadVideo(videoId, 0);
             }
         });

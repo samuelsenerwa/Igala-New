@@ -12,6 +12,14 @@
         android:orientation="vertical"
         android:layout_margin="20dp">
         <ImageView
+            android:id="@+id/back_button"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="left"
+            app:tint="@color/black" />
+        <ImageView
             android:id="@+id/title_drawable"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -25,7 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
-            android:text="LOGIN"
+            android:text="Sign up"
+            android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -37,35 +46,7 @@
             android:orientation="vertical"
             android:layout_marginTop="40dp">
 
-<!--            <com.hbb20.CountryCodePicker-->
-<!--                android:id="@+id/login_country_code_picker"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:ccp_autoDetectCountry="true"-->
-<!--                app:ccp_showFlag="true"-->
-<!--                app:ccp_showNameCode="true"-->
-<!--                app:ccp_showFullName="true"-->
-<!--                android:padding="7dp"-->
-<!--                android:background="@drawable/black_border"/>-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/login_phone_number"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:editable="false"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:padding="15dp"-->
-<!--                android:background="@drawable/black_border"-->
-<!--                android:textColorHint="@color/black"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:hint="phone"-->
-<!--                android:layout_marginBottom="20dp"-->
-<!--                android:inputType="phone"-->
-<!--                android:singleLine="true" />-->
-
-
-
-                        <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/et_Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,63 +101,20 @@
 
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Remember Me"
-                android:layout_weight="6"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/forgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Forgot password ?"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_weight="2"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-
         <Button
-            android:id="@+id/loginBtn"
+            android:id="@+id/user_sign_up_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/black"
             android:elevation="5dp"
-            android:text="LOGIN"
+            android:text="SIGN UP"
             android:textColor="@color/white"
             android:transitionName="transition_login_btn" />
 
-        <TextView
-            android:id="@+id/sign_up_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="SIGN UP"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/sign_in_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="CREATE ACCOUNT"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"/>
+
+
 
     </LinearLayout>
 

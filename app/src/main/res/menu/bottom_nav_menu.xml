@@ -16,8 +16,8 @@
         android:id="@+id/navigation_videos"
         android:icon="@drawable/ic_videos"
         android:title="Videos" />
-<!--    <item-->
-<!--        android:id="@+id/navigation_culturalEvents"-->
-<!--        android:icon="@drawable/ic_profile"-->
-<!--        android:title="Profile" />-->
+    <item
+        android:id="@+id/navigation_faceOfTheWeek"
+        android:icon="@drawable/ic_photo"
+        android:title="Face of the Week" />
 </menu>

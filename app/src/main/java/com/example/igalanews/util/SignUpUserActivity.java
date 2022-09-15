@@ -3,16 +3,23 @@ package com.example.igalanews.util;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Pair;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.igalanews.FacebookAuthActivity;
@@ -26,6 +33,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,146 +41,203 @@ import java.util.Arrays;
 
 public class SignUpUserActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private EditText mEmail, mPassword;
-    Button sign_up_btn;
+    Button next, login;
+    TextView create_title;
+    ImageView title_drawable, back_btn;
+    TextInputLayout fullName, userName, password, email, location;
 
-    GoogleSignInOptions googleSignInOptions;
-    GoogleSignInClient googleSignInClient;
-   // ImageView googleBtn, facebookBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_user);
 
-//        googleBtn = findViewById(R.id.googleBtn);
-        mEmail = findViewById(R.id.et_Email);
-        mPassword = findViewById(R.id.et_Pass);
-//        sign_up_btn = findViewById(R.id.sign_up_btn);
-//        facebookBtn = findViewById(R.id.facebookBtn);
+        next = findViewById(R.id.button_sign_in_next);
+        login = findViewById(R.id.signup_login);
+        back_btn = findViewById(R.id.back_button);
+        create_title = findViewById(R.id.create_text_title);
+        title_drawable = findViewById(R.id.title_drawable);
+        location = (TextInputLayout) findViewById(R.id.spinner);
+        fullName = (TextInputLayout) findViewById(R.id.full_name);
+        userName = (TextInputLayout) findViewById(R.id.user_name);
+        email = (TextInputLayout) findViewById(R.id.et_Email);
+        password = (TextInputLayout) findViewById(R.id.et_Pass);
         mAuth = FirebaseAuth.getInstance();
 
-
-        //signUp use with email and password
-
-        sign_up_btn.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = mEmail.getText().toString();
-                String password = mPassword.getText().toString();
-
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(SignUpUserActivity.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
-                    mEmail.setError("Email is Required");
-                    mEmail.requestFocus();
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    Toast.makeText(SignUpUserActivity.this, "Please re-enter your email", Toast.LENGTH_SHORT).show();
-                    mEmail.setError("Enter valid email");
-                    mEmail.requestFocus();
-                } else if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(SignUpUserActivity.this, "Please Enter Email", Toast.LENGTH_SHORT).show();
-                    mPassword.setError("Email is Required");
-                    mPassword.requestFocus();
-                } else {
-                    createUser(email, password);
-                }
-            }
-
-        });
-
-        //Hide password
-
-        ImageView imageView_pass = findViewById(R.id.hide_password);
-        imageView_pass.setImageResource(R.drawable.ic_view_pass);
-        imageView_pass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
-                    mPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    imageView_pass.setImageResource(R.drawable.ic_hide_pass);
-                } else {
-                    mPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    imageView_pass.setImageResource(R.drawable.ic_view_pass);
-                }
+                startActivity(new Intent(SignUpUserActivity.this, LoginActivity.class));
+                finish();
             }
         });
 
-//        //facebook login
-//        facebookBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(SignUpUserActivity.this, FacebookAuthActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                startActivity(intent);
-//
-//                 //LoginManager.getInstance().logInWithReadPermissions(SignUpUserActivity.this, Arrays.asList("public_profile"));
-//            }
-//        });
-
-        //signup the user google Account
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpUserActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
 
 
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+        String[] local_government = new String[] {
+                "Ankpa",
+                "Ibaji",
+                "Idah",
+                "Ofu",
+                "Omala",
+                "Olamaboro",
+                "Dekina",
+                "Igalamela",
+                "Ajaokuta"
+        };
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (account != null) {
-            //  navigateToSecondActivity();
+        ArrayAdapter <String> stringArrayAdapter =
+                new ArrayAdapter<>(
+                        this,
+                        R.layout.dropdown_item,
+                        local_government
+                );
+
+        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.filled_exposed);
+        autoCompleteTextView.setAdapter(stringArrayAdapter);
+
+      autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+          @Override
+          public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+              Toast.makeText(SignUpUserActivity.this, autoCompleteTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+          }
+      });
+
+    }
+
+    private boolean validateFullName(){
+        String val = fullName.getEditText().getText().toString().trim();
+
+        if (val.isEmpty()){
+            fullName.setError("Filed cannot be empty");
+            return false;
+        }
+        else
+        {
+            fullName.setError(null);
+            fullName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateUserName(){
+        String val = userName.getEditText().getText().toString().trim();
+        String checkspaces = "\\A\\w{4,20}\\z";
+        if (val.isEmpty()){
+            fullName.setError("Filed cannot be empty");
+            return false;
+        } else if (val.length() > 20){
+            userName.setError("Username too long");
+            return  false;
         }
 
+        else if (!val.matches(checkspaces)){
+            userName.setError("No white spaces allowed");
+            return  false;
+        }
 
-//        googleBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                signIn();
-//            }
-//        });
-//    }
-        //method to sign-up user
-
-//
-//    private void signIn() {
-//        Intent signInIntent = googleSignInClient.getSignInIntent();
-//        startActivityForResult(signInIntent, 1000);
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 1000){
-//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//
-//            try {
-//                task.getResult(ApiException.class);
-//                navigateToSecondActivity();
-//
-//            } catch (ApiException e) {
-//                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-//            }
-//
-//        }
-//    }
-//    private void navigateToSecondActivity(){
-//        finish();
-//        Intent intent = new Intent(SignUpUserActivity.this, MainActivity.class);
-//        startActivity(intent);
-//    }
-}
-
-    private void createUser(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(SignUpUserActivity.this, "Sign Up Successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(SignUpUserActivity.this, LoginActivity.class));
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SignUpUserActivity.this, "Registration Failed!! Try using google or Facebook", Toast.LENGTH_LONG).show();
-            }
-        });
+        else
+        {
+            userName.setError(null);
+            userName.setErrorEnabled(false);
+            return true;
+        }
     }
+
+    private boolean validateSpinner(){
+        String val = location.getEditText().getText().toString().trim();
+
+        if (val.isEmpty()){
+            location.setError("Filed cannot be empty");
+            return false;
+        }
+        else
+        {
+            location.setError(null);
+            location.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateEmail(){
+        String val = email.getEditText().getText().toString().trim();
+        String checkemail = "[a-zA-z0-9._-]+@[a-z]+\\.+[a-z]+";
+        if (val.isEmpty()){
+            email.setError("Filed cannot be empty");
+            return false;
+        }
+
+        else if (!val.matches(checkemail)){
+            email.setError("Invalid email");
+            return  false;
+        }
+
+        else
+        {
+            email.setError(null);
+            email.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validatePassword(){
+        String val = password.getEditText().getText().toString().trim();
+        String checkPassword =
+                "(?=.*[a-zA-Z])" + //any letter
+                "(?=.*[@#$%^&+=])" + //no whitespaces
+                "(?=\\S+$)" +
+                ".{4,}" +
+                        "$"
+                ;
+        if (val.isEmpty()){
+            password.setError("Filed cannot be empty");
+            return false;
+        }
+
+        else if (!val.matches(checkPassword)){
+            password.setError("Password should contain atleast 4 characters");
+            return  false;
+        }
+
+        else
+        {
+            password.setError(null);
+            password.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+
+
+    public void callNextSignupScreen(View view){
+
+        if (!validateFullName() | !validateEmail() | !validateUserName() | !validatePassword() | !validateSpinner()) {
+                    return;
+                }
+
+        String full_name = fullName.getEditText().getText().toString();
+        String user_name = userName.getEditText().getText().toString();
+        String _location = location.getEditText().getText().toString();
+        String pass_word = password.getEditText().getText().toString();
+        String userEmail = email.getEditText().getText().toString();
+
+
+        Intent intent = new Intent(getApplicationContext(), SignUp3rdUserActivity.class);
+        intent.putExtra("fullName", full_name);
+        intent.putExtra("userName", user_name);
+        intent.putExtra("Spinner", _location);
+        intent.putExtra("Email", userEmail);
+        intent.putExtra("Password", pass_word);
+        startActivity(intent);
+    }
+
 }
