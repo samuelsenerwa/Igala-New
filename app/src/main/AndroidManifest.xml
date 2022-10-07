@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IgalaNews">
         <activity
+            android:name=".PickOfTheWeekActivity"
+            android:exported="false" />
+        <activity
             android:name=".util.UserSignUpActivity"
             android:exported="false" />
         <activity

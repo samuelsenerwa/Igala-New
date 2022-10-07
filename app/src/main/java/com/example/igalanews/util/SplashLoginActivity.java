@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.igalanews.PickOfTheWeekActivity;
 import com.example.igalanews.R;
 
 public class SplashLoginActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class SplashLoginActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashLoginActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SplashLoginActivity.this, PickOfTheWeekActivity.class);
                 startActivity(intent);
                 finish();
             }
