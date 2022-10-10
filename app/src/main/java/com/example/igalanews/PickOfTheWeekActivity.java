@@ -39,6 +39,6 @@ public class PickOfTheWeekActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 5500);
+        }, 3500);
     }
 }
